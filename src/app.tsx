@@ -1,5 +1,4 @@
-import { useState } from "react"
-import { Accordion } from "./components/accordion"
+import { AccordionItem } from "./components/accordion"
 
 interface AccordionObj {
   id: number
@@ -9,8 +8,7 @@ interface AccordionObj {
 }
 
 export function App() {
-
-  const [questions, setQuestions] = useState<AccordionObj[]>([
+  const questions: AccordionObj[] = [
     {
       id: 1,
       question: "What is the origin of soccer?",
@@ -29,27 +27,16 @@ export function App() {
       answer: "A player is offside if they are nearer to the opponent's goal than the ball and the second-to-last defender when the ball is passed to them and are involved in active play.",
       opened: false
     }
-  ])
-
-  function handleAccordionClick(id: number) {
-    setQuestions(questions => {
-      return questions.map(a =>
-        a.id === id 
-        ? {...a, opened: !a.opened}
-        : a
-      )
-    })
-  }
+  ]
 
   return (
     <div className="text-center mx-auto max-w-2xl space-y-4 py-4">
       {questions.map((a, index) => 
         (
-          <Accordion 
+          <AccordionItem 
             key={index}
             index={index + 1}
             accordionObj={a}
-            onAccordionClick={handleAccordionClick}
           />
         )
       )}

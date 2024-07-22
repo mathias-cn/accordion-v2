@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 interface AccordionProps {
     index: number
     accordionObj: {
@@ -6,16 +8,21 @@ interface AccordionProps {
         answer: string,
         opened: boolean
     }
-    onAccordionClick: (id: number) => void
 }
 
-export function Accordion({ index, accordionObj, onAccordionClick }: AccordionProps) {
+export function AccordionItem({ index, accordionObj }: AccordionProps) {
+    const [isOpen, setIsOpen] = useState(false)
+
+    function handleClick() {
+        setIsOpen(!isOpen)
+    }
+
     let newIndex: number | string = index
     if(newIndex < 10) newIndex = "0" + index
 
-    if(accordionObj.opened) {
+    if(isOpen) {
         return (
-            <div onClick={() => onAccordionClick(accordionObj.id)} className="cursor-pointer border-t-8 border-green-600 font-semibold py-4 px-8 bg-gray-100 rounded-lg w-full flex gap-6 items-start justify-between text-2xl text-left">
+            <div onClick={handleClick} className="cursor-pointer border-t-8 border-green-600 font-semibold py-4 px-8 bg-gray-100 rounded-lg w-full flex gap-6 items-start justify-between text-2xl text-left">
                 <span className="text-green-600">{newIndex}</span>
                 <div className="flex-1 space-y-4">
                     <h2 className="text-green-600">{accordionObj.question}</h2>
@@ -26,7 +33,7 @@ export function Accordion({ index, accordionObj, onAccordionClick }: AccordionPr
         )
     }
     return (
-        <div onClick={() => onAccordionClick(accordionObj.id)} className="cursor-pointer font-semibold py-4 px-8 bg-gray-100 rounded-lg w-full flex gap-6 items-start justify-between text-2xl text-left">
+        <div onClick={handleClick} className="cursor-pointer font-semibold py-4 px-8 bg-gray-100 rounded-lg w-full flex gap-6 items-start justify-between text-2xl text-left">
             <span>{newIndex}</span>
             <div className="flex-1">
                 <h2>{accordionObj.question}</h2>
