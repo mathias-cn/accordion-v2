@@ -10,7 +10,9 @@ interface AccordionObj {
 export function App() {
   const [openAccordionItem, setOpenAccordionItem] = useState<null | number>(null)
   function handleAccordionItemClick(id: number) {
-    setOpenAccordionItem(id)
+    id === openAccordionItem
+    ? setOpenAccordionItem(null)
+    : setOpenAccordionItem(id)
   }
 
   const questions: AccordionObj[] = [
