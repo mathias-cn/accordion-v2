@@ -27,7 +27,7 @@ export function App() {
       id: 3,
       question: "What is the offside rule in soccer?",
       answer: "A player is offside if they are nearer to the opponent's goal than the ball and the second-to-last defender when the ball is passed to them and are involved in active play.",
-      opened: true
+      opened: false
     }
   ])
 
